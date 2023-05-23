@@ -134,6 +134,12 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    bundle {
+        language {
+            enableSeparateBuildPerCPUArchitecture = false
+        }
+    }
+
     defaultConfig {
         applicationId "com.myapp"
         minSdkVersion rootProject.ext.minSdkVersion
