@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Android App Bundle
         run: |
-          cd android && ./gradlew bundleRelease --no-daemon
+          cd android && ./gradlew bundleRelease --no-daemon --stacktrace --debug
 
       - name: Sign App Bundle
         id: sign_app
