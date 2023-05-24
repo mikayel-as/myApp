@@ -31,6 +31,9 @@ jobs:
           java-version: 11
           distribution: adopt
 
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+
       - name: Build iOS App
         run: |
           cd ios
