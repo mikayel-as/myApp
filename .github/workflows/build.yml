@@ -13,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    outputs:
+      upload_url: ${{ steps.get_upload_url.outputs.result }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
