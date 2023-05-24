@@ -53,6 +53,15 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.0  # Replace with your valid tag name
+          release_name: Release v1.0.0
+
       - name: Get Upload URL
         id: get_upload_url
         uses: actions/github-script@v4
