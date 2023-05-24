@@ -26,23 +26,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Android App Bundle
+      - name: Build Android App apk
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
       - name: Create release directory
         run: |
-          mkdir -p android/app/build/outputs/bundle/release
+          mkdir -p android/app/build/outputs/apk/release
 
       - name: Adjust file permissions
         run: |
-          chmod -R +rx android/app/build/outputs/bundle/release
+          chmod -R +rx android/app/build/outputs/apk/release
 
-      - name: Sign App Bundle
+      - name: Sign App apk
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: android/app/build/outputs/bundle/release
+          releaseDirectory: android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
