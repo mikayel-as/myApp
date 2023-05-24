@@ -30,6 +30,10 @@ jobs:
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
+      - name: Adjust file permissions
+        run: |
+          chmod -R +rx android/app/build/outputs/bundle/release
+
       - name: Sign App Bundle
         id: sign_app
         uses: r0adkll/sign-android-release@v1
