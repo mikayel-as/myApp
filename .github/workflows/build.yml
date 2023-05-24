@@ -56,6 +56,16 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
 
+      - name: Build iOS App
+        run: |
+          cd ios
+          pod install
+          xcodebuild -workspace YourApp.xcworkspace -scheme YourApp -destination 'platform=iOS Simulator,name=iPhone 12' build
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive -archivePath YourApp.xcarchive -exportPath YourApp -exportOptionsPlist ExportOptions.plist
+
       - name: Get Upload URL
         id: get_upload_url
         uses: actions/github-script@v4
@@ -74,3 +84,9 @@ jobs:
         with:
           name: app-release
           path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v2
+        with:
+          name: myApp
+          path: myApp.ipa
