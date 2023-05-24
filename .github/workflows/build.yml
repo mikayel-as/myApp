@@ -59,8 +59,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0  # Replace with your valid tag name
-          release_name: Release v1.0.0
+          tag_name: test_github_actions  # Replace with your valid tag name
+          release_name: Release test_github_actions
 
       - name: Upload APK
         uses: actions/upload-release-asset@v1
