@@ -62,19 +62,6 @@ jobs:
           tag_name: v1.0.0  # Replace with your valid tag name
           release_name: Release v1.0.0
 
-      - name: Get Upload URL
-        id: get_upload_url
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const response = await github.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: context.payload.ref
-            });
-            return response.data.upload_url;
-
       - name: Upload APK
         uses: actions/upload-release-asset@v1
         with:
