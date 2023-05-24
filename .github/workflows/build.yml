@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - test_github_actions
-  permissions:
-    id-token: write
-    contents: read
-    issues: write
-    pull-requests: write
+    permissions:
+      id-token: write
+      contents: read
+      issues: write
+      pull-requests: write
 
 jobs:
   Make_GitHub_Release:
