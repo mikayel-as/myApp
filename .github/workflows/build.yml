@@ -11,7 +11,8 @@ on:
       pull-requests: write
 
 jobs:
-  build:
+  Make_GitHub_Release:
+    name: Create Release
     runs-on: macos-latest
     outputs:
       upload_url: ${{ steps.get_upload_url.outputs.result }}
@@ -58,7 +59,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-release-asset@v1
         with:
-          upload_url: ${{ steps.get_upload_url.outputs.result }}
+          upload_url: ${{ needs.Make_GitHub_Release.outputs.upload_url }}
           asset_path: android/app/build/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
           asset_content_type: application/vnd.android.package-archive
