@@ -56,10 +56,23 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
 
+      - name: Get Upload URL
+        id: get_upload_url
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const response = await github.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: context.payload.ref
+            });
+            return response.data.upload_url;
+
       - name: Upload APK
         uses: actions/upload-release-asset@v1
         with:
-          upload_url: android/app/build/outputs/apk/release
+          upload_url: ${{ steps.get_upload_url.outputs.result }}
           asset_path: android/app/build/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
           asset_content_type: application/vnd.android.package-archive
