@@ -65,7 +65,7 @@ jobs:
             const response = await github.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag: context.payload.ref
+              tag: context.payload.ref.replace('refs/heads/', '')
             });
             return response.data.upload_url;
 
