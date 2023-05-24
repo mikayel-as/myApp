@@ -55,15 +55,6 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: test_github_actions  # Replace with your valid tag name
-          release_name: Release test_github_actions
-
       - name: Upload APK
         uses: actions/upload-release-asset@v1
         with:
