@@ -30,6 +30,10 @@ jobs:
         run: |
           cd android && ./gradlew assembleRelease --no-daemon
 
+      - name: Create release directory
+        run: |
+          mkdir -p android/app/build/outputs/bundle/release
+
       - name: Adjust file permissions
         run: |
           chmod -R +rx android/app/build/outputs/bundle/release
