@@ -54,10 +54,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const response = await github.repos.getReleaseByTag({
+            const response = await github.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag: context.payload.ref
+              tag_name: context.payload.ref
             });
             return response.data.upload_url;
 
