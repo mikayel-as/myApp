@@ -45,7 +45,7 @@ jobs:
 
       - name: Export IPA
         run: |
-          xcodebuild -exportArchive -archivePath myApp.xcarchive -exportPath ios
+          xcodebuild -exportArchive -archivePath myApp.xcarchive -exportPath ios -exportOptionsPlist ExportOptions.plist
 
       - name: Upload IPA
         uses: actions/upload-artifact@v2
